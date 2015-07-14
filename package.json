@@ -1,0 +1,26 @@
+{
+  "name": "cozy-laverna",
+  "version": "0.0.1",
+  "description": "CozyCloud wrapper for Laverna Web application",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.13.2",
+    "connect": "^3.4.0",
+    "escape-html": "^1.0.1",
+    "replacestream": "^4.0.0",
+    "serve-static": "^1.10.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "postinstall": "rm -rf static-laverna && git clone -b gh-pages https://github.com/Laverna/static-laverna"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clochix/cozy-laverna.git"
+  },
+  "author": "Clochix",
+  "license": "GPLv3",
+  "icon-path": "laverna.png"
+}
