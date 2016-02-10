@@ -39,6 +39,9 @@ app.use('/', function (req, res, next) {
     res.setHeader('Content-Type', 'text/javascript');
     fs.createReadStream(path.join(__dirname, 'cozy.js'))
       .pipe(res);
+  } else if (req.url === '/scripts/main.js'){
+    res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+    next();
   } else if (/main.js/.test(req.url)) {
     console.log(req.url);
     main = req.url.split('/').pop();
@@ -49,7 +52,7 @@ app.use('/', function (req, res, next) {
       // hotfix of a bug in Laverna
       .pipe(replaceStream('notebookId:{type:"string"}', 'notebookId:{type:"number"}'))
       .pipe(res);
-  } else {
+  } else {    
     next();
   }
 });
