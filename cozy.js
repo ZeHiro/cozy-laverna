@@ -4,7 +4,8 @@ window.addEventListener('load', function () {
   var input, btn, interval;
   interval = window.setInterval(function () {
     input = document.querySelector("[name=userAddress]");
-    if (input !== null) {
+    if (input !== null && !input.value) {
+      console.log(input.value);
       window.clearInterval(interval);
       input.value = "me@" + window.location.host;
       btn   = document.querySelector("[name=connect]");

@@ -45,14 +45,17 @@ app.use('/', function (req, res, next) {
   } else if (/main.js/.test(req.url)) {
     console.log(req.url);
     main = req.url.split('/').pop();
-    res.setHeader('Content-Type', 'text/javascript');
+    res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
     fs.createReadStream(path.join(__dirname, 'static-laverna', 'scripts', main))
       // set storage to remoteStorage
       .pipe(replaceStream('cloudStorage:"0"', 'cloudStorage:"remotestorage"'))
       // hotfix of a bug in Laverna
       .pipe(replaceStream('notebookId:{type:"string"}', 'notebookId:{type:"number"}'))
       .pipe(res);
-  } else {    
+  } else if (/.*.js/.test(req.url)) {
+    res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+    next();
+  } else {
     next();
   }
 });
